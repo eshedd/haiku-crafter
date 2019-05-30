@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Haiku Crafter</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <button onclick="run()">Click</button>
+        <p id="gettest"></p>
+        <script>
+            function run()
+            {
+                axios("https://haikucrafter--iamtheyammer.repl.co/")
+                    .then((data) => {
+                        document.getElementById('gettest').innerHTML = data.data;
+                    })
+                    .catch((err) => {
+                        alert(err);
+                    })
+            }
+
+        </script>
+    </body>
+</html>
