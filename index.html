@@ -3,16 +3,44 @@
     <head>
         <title>Haiku Crafter</title>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <style>
+            .box {
+                width: 50%;
+                float: center;
+            }
+            p {
+                font-family: "Comic Sans MS";
+                font-size: 50px;
+                color: #f35626;
+                background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-animation: hue 60s infinite linear;
+            }
+
+            @-webkit-keyframes hue {
+                from {
+                    -webkit-filter: hue-rotate(0deg);
+                }
+
+                to {
+                    -webkit-filter: hue-rotate(360deg);
+                }
+            }
+        </style>
     </head>
     <body>
-        <button onclick="run()">Click</button>
-        <p id="gettest"></p>
+        <div class="box">
+            <p id="output"></p>
+            <button onclick="run()">Gimme Haiku</button>
+            <img src="https://i.pinimg.com/originals/2c/d5/53/2cd553187fdf3a0f2b53c02e823b13e0.gif">
+        </div>
         <script>
             function run()
             {
-                axios("https://haikucrafter--iamtheyammer.repl.co/")
+                axios("https://haikucrafter--ethanshedd.repl.co/")
                     .then((data) => {
-                        document.getElementById('gettest').innerHTML = data.data;
+                        document.getElementById('output').innerHTML = data.data;
                     })
                     .catch((err) => {
                         alert(err);
