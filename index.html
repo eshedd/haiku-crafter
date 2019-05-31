@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Haiku Crafter</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <style>
             .box {
@@ -12,13 +13,32 @@
                 border-color: black;
                 border-style: solid;
                 border-width: 2px;
-                height: 225px;
+                height: 50vw;
                 width: 100%;
                 background-color: black;
             }
+
+            @media (min-width:600px) {
+                p {
+                    font-size: 16px;
+                }
+            }
+
+            @media (min-width:800px) {
+                body {
+                    font-size: 18px;
+                }
+            }
+
+            @media (min-width:1000px) {
+                body {
+                    /* Never get larger than this */
+                    font-size: 20px;
+                }
+            }
             p {
                 font-family: "Comic Sans MS";
-                font-size: 50px;
+                font-size: 4vw;
                 margin-top: 5px;
                 text-align: center;
                 color: #f35626;
@@ -76,8 +96,9 @@
                         // var original = new SpeechSynthesisUtterance(data.data);
                         // var msg1 = original.toString()
                         // var msg = msg1.replace("</br>", " ");
-                        var msg = new SpeechSynthesisUtterance(data.data)
-                        window.speechSynthesis.speak(msg);
+
+                        // var msg = new SpeechSynthesisUtterance(data.data)
+                        // window.speechSynthesis.speak(msg);
                         document.getElementById('output').innerHTML = data.data;
                     })
                     .catch((err) => {
