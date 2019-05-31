@@ -5,17 +5,27 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <style>
             .box {
+                margin: auto;
                 width: 50%;
-                float: center;
+            }
+            .haiku {
+                border-color: black;
+                border-style: solid;
+                border-width: 2px;
+                height: 225px;
+                width: 100%;
+                background-color: black;
             }
             p {
                 font-family: "Comic Sans MS";
                 font-size: 50px;
+                margin-top: 5px;
+                text-align: center;
                 color: #f35626;
                 background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                -webkit-animation: hue 60s infinite linear;
+                -webkit-animation: hue 30s infinite linear;
             }
 
             @-webkit-keyframes hue {
@@ -27,19 +37,47 @@
                     -webkit-filter: hue-rotate(360deg);
                 }
             }
+
+            body {
+                height: 0.01px;
+                color: #f35626;
+                background-image: -webkit-linear-gradient(92deg, #FFFFFF, #000000);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-animation: hue 60s infinite linear;
+            }
+
+            img {
+                margin-top: 30px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 20%;
+            }
+
+            h1 {
+                color: white;
+            }
         </style>
     </head>
     <body>
         <div class="box">
-            <p id="output"></p>
-            <button onclick="run()">Gimme Haiku</button>
-            <img src="https://i.pinimg.com/originals/2c/d5/53/2cd553187fdf3a0f2b53c02e823b13e0.gif">
+            <div class="haiku">
+                <h1>Haiku Crafter</h1>
+                <p id="output"></p>
+            </div>
         </div>
+        <img onclick="run()" src="https://i.pinimg.com/originals/2c/d5/53/2cd553187fdf3a0f2b53c02e823b13e0.gif">
         <script>
             function run()
             {
                 axios("https://haikucrafter--ethanshedd.repl.co/")
                     .then((data) => {
+                        // var original = new SpeechSynthesisUtterance(data.data);
+                        // var msg1 = original.toString()
+                        // var msg = msg1.replace("</br>", " ");
+                        var msg = new SpeechSynthesisUtterance(data.data)
+                        window.speechSynthesis.speak(msg);
                         document.getElementById('output').innerHTML = data.data;
                     })
                     .catch((err) => {
